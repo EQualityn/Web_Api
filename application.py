@@ -6,9 +6,9 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
-# with app.app_context():
-#     db.create_all()
+# from project_name import app, db
 # app.app_context().push()
+# db.create_all()
 class Meal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True,nullable=False)
@@ -42,6 +42,7 @@ def add_meal():
     db.session.add(meal)
     db.session.commit()
     return {'id': meal.id}
+
 @app.route('/meals/<id>', methods=['DELETE'])
 def delete_meal():
     meal = Meal.query.get(id)
