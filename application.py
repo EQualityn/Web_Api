@@ -18,7 +18,7 @@ class Meal(db.Model):
         return f"{self.name} - {self.description}"
 
 @app.route('/')
-def index():
+def index(): 
     return 'Hello!'
 
 @app.route('/meals')
